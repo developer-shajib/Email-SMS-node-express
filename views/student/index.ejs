@@ -1,0 +1,56 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-10 m-auto">
+            <a class="btn btn-primary shadow mb-4" href="/student/create">Add new Student</a>
+            <div class="card shadow">
+                <div class="card-header">
+                    <h1>Show All Student</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped student_data_table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Cell</th>
+                                <th>Location</th>
+                                <th>Gender</th>
+                                <th>Photo</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                      <% student.reverse().forEach((element,index) => { %>
+                        <tr class="align-middle">
+                            <td scope="row"><%= index + 1 %> </td>
+                            <td><%= element.name %> </td>
+                            <td><%= element.email %></td>
+                            <td><%= element.cell %></td>
+                            <td><%= element.location %></td>
+                            <td><%= element.gender %> </td>
+                            <td>
+
+                                <% if (element.photo == 'avatar.png' || element.photo == 'fAvatar.png') { %>
+                                  <img src="/images/<%= element.photo %> "alt="">
+                                    <% } else { %>
+                                    <img src="/images/student_Image/<%= element.photo %> "alt="">
+                                <% } %>
+
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="/student/<%= element.id %> "><i class="fas fa-eye"></i></a>
+                                <a  class="btn btn-sm btn-warning" href="/student/edit/<%= element.id %> "><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-sm btn-danger delete_btn" href="/student/delete/<%= element.id %> "><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                      <% }) %>
+                  
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
